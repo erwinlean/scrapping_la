@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <title>test</title>
+</head>
+<body>
+    <div>
+        <h1>Test LA scrapping</h1>
+    </div>
+
+    <div>
+        <p><strong>URL: https://www.laanonimaonline.com </strong></p>
+        <p>ejemplo de codigo: 2806435, 2144037,2885384</p>
+        <div>
+            <form action="" id="form_id">
+                <input name="input_form" id=input type="text" placeholder="Insertar codigo">
+                <input type="submit" id="form_submit">
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <button id="btn-download">Download xlsx</button>
+    </div>
+
+    <div id="test">
+
+    </div>
+
+    <script src="./functions/preventEventDefault.js"></script>
+    <script src="./functions/codes_to_xlsx.js" defer></script>
+</body>
+</html>
