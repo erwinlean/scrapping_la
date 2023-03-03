@@ -6,15 +6,6 @@ const search = document.getElementById("form_submit");
 const url = "https://www.laanonimaonline.com/";
 let to_convert = [[]];
 
-/*PARA OBTENER TODOS LOS CODIGOS INTRODUCIDO EN EL INPUT
-foreach codigo en el array, se ejecutara la busqueda
-cambiar el codigo en la funcion, ya que obtendra el valor desde el array
-y no desde el input
-const str = "123, 4352, 54233421, 324,54634, 43 , 23,   345";
-const arr = str.split(/,\s*|\s*,\s*|\s+/);
-console.log(arr);
-*/
-
 async function la_scrap() {
     console.clear();
 
@@ -123,7 +114,7 @@ async function la_scrap() {
 };
 
 
-//testing download xlsx file
+//testing download xlsx file >>> NOT WORKING PROPERLY
 let array = [["pepe_1", "asd", "4352","3","je"],["pepe_2", "54sefasd", "224352","4","ja"],["pepe_3", "asdgg", "4324","5","jo"]];
 let header = ["link", "titulo", "descriptcion", "cod_art", "img"];
 
