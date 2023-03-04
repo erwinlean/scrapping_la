@@ -111,47 +111,46 @@ async function la_scrap() {
         };
         document.getElementById("test").appendChild(table);
     });
+
+    //TEST XLSX >> working test, next step:
+    // add to the principal function
+    const btnDownload = document.getElementById('btn-download');
+    btnDownload.addEventListener('click', () => {
+        let header = ["link", "titulo", "descriptcion", "cod_art", "img"];
+        // Create a new workbook and worksheet
+        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils.json_to_sheet([], { header: header });
+
+        // Add data to the worksheet
+        to_convert[0].forEach(data => {
+            const row = {};
+            for (let i = 0; i < header.length; i++) {
+                row[header[i]] = data[i];
+            }
+            XLSX.utils.sheet_add_json(worksheet, [row], { skipHeader: true, origin: -1 });
+        });
+
+        // Add the worksheet to the workbook
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+        // Convert the workbook to a buffer
+        const buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
+
+        // Create a Blob object from the buffer
+        const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+        // Create a link element and set its attributes
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "file.xlsx";
+
+        // Append the link element to the DOM and trigger a click event to download the file
+        document.body.appendChild(link);
+        link.click();
+
+        // Clean up the link element
+        document.body.removeChild(link);
+    });
 };
-
-//TEST XLSX >> working test, next step:
-// add to the principal function
-const btnDownload = document.getElementById('btn-download');
-btnDownload.addEventListener('click', () => {
-    let header = ["link", "titulo", "descriptcion", "cod_art", "img"];
-    let array = [["pepe_1", "asd", "4352","3","je"],["pepe_2", "54sefasd", "224352","4","ja"],["pepe_3", "asdgg", "4324","5","jo"]];
-  // Create a new workbook and worksheet
-  const workbook = XLSX.utils.book_new();
-  const worksheet = XLSX.utils.json_to_sheet([], { header: header });
-
-  // Add data to the worksheet
-  array.forEach(data => {
-    const row = {};
-    for (let i = 0; i < header.length; i++) {
-      row[header[i]] = data[i];
-    }
-    XLSX.utils.sheet_add_json(worksheet, [row], { skipHeader: true, origin: -1 });
-  });
-
-  // Add the worksheet to the workbook
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-
-  // Convert the workbook to a buffer
-  const buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
-
-  // Create a Blob object from the buffer
-  const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-
-  // Create a link element and set its attributes
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "file.xlsx";
-
-  // Append the link element to the DOM and trigger a click event to download the file
-  document.body.appendChild(link);
-  link.click();
-
-  // Clean up the link element
-  document.body.removeChild(link);
-});
 
 search.onclick = la_scrap;
