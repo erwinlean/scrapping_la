@@ -1,10 +1,8 @@
 "use stric" 
 
 const puppeteer = require('puppeteer');
-const XLSX = require('xlsx');
 const search = document.getElementById("form_submit");
 const url = "https://www.laanonimaonline.com/";
-const btnDownload = document.getElementById('btn-download');
 let to_convert = [[]];
 
 async function la_scrap() {
@@ -127,39 +125,4 @@ async function la_scrap() {
     });
 };
 
-
-const xlsx_function_download = async () =>{
-    let header = ["link", "titulo", "descriptcion", "cod_art", "img", "img_adicionales"];
-    
-    // Create a new workbook and worksheet
-    let workbook = XLSX.utils.book_new();
-    let worksheet = XLSX.utils.json_to_sheet([], { header: header });
-
-    // Add data to the worksheet
-    to_convert[0].forEach(data => {        
-        let row = {};
-        for (let i = 0; i < header.length; i++) {
-            row[header[i]] = data[i];
-        }
-        XLSX.utils.sheet_add_json(worksheet, [row], { skipHeader: true, origin: -1 });    
-    });    
-    
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");  
-    // Convert the workbook to a buffer
-    let buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
-    // Create a Blob object from the buffer
-    let blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-    // Create a link element and set its attributes
-    let link_to_xlsx_file = document.createElement("a");
-    link_to_xlsx_file.href = URL.createObjectURL(blob);
-    link_to_xlsx_file.download = "file.xlsx";
-    // Append the link element to the DOM and trigger a click event to download the file
-    document.body.appendChild(link_to_xlsx_file);
-    link_to_xlsx_file.click();
-    // Clean up the link element
-    document.body.removeChild(link_to_xlsx_file);
-}
-
 search.onclick = la_scrap;
-btnDownload.onclick = xlsx_function_download;
