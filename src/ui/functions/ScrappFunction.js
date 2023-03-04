@@ -11,15 +11,15 @@ async function la_scrap() {
     let container = document.getElementById("test");
     // Clear div container (table) if there is any element on
     if (container.hasChildNodes()) {
-        container.querySelectorAll('*').forEach(n => n.remove());
+        container.querySelectorAll('*').forEach(element_inside_container => element_inside_container.remove());
     }
 
-    //convert type of the imput
+    // Convert type of the imput
     let article_cod_input = document.getElementById("input");
     let cod_art = article_cod_input.value;
-    const arr = cod_art.split(/,\s*|\s*,\s*|\s+/);
+    const article_codes_to_search = cod_art.split(/,\s*|\s*,\s*|\s+/);
 
-    await arr.forEach(async (element) => {
+    await article_codes_to_search.forEach(async (article_code_to_search) => {
         // Open browser on resource and search cod_art
         let browser = await puppeteer.launch({args: ['--Cross-Origin-Resource-Policy'], headless: true});
         const page = await browser.newPage();
@@ -30,7 +30,7 @@ async function la_scrap() {
         }
         await page.goto(url/*, {waitUntil: "networkidle0"}*/);
         await page.waitForSelector("#buscar");
-        await page.type("#buscar", element/*, {delay: 25}*/);
+        await page.type("#buscar", article_code_to_search/*, {delay: 25}*/);
         await page.keyboard.press("Enter");
 
         // Enter on the URL of the specific prodct
@@ -90,8 +90,8 @@ async function la_scrap() {
 
         //Push images, then converto single array, so to xlsx file can add the info to the file, then delete all the images thats that contains more than _5.jpg because only need 5 images extras, also remmove elements that doesnt contain "cdnlaol"
         let images_to_push=[];
-        all_imgs_filtered = all_imgs_filtered.filter((element) => {
-            return element.includes("cdnlaol");
+        all_imgs_filtered = all_imgs_filtered.filter((url_images_check) => {
+            return url_images_check.includes("cdnlaol");
         });
         all_imgs_filtered.forEach(image => {
             images_to_push.push(image);
