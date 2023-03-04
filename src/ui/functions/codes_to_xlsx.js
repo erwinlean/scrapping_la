@@ -55,17 +55,12 @@ async function la_scrap() {
         // Link/Url
         let link = page.url();
         // Product code on the page, needed to search the images
-        let cod_img_4 = link.slice(-7); // To correct, not efficient lines to obtein the product code
-        cod_img_4 = cod_img_4.substring(0, cod_img_4.length-1);
-        let cod_img_1 = link.slice(-6);
-        cod_img_1 = cod_img_1.substring(0, cod_img_1.length-1);
-        let cod_img_2 = link.slice(-5);
-        cod_img_2 = cod_img_2.substring(0, cod_img_2.length-1);
-        let cod_img_3 = link.slice(-4);
-        cod_img_3 = cod_img_3.substring(0, cod_img_3.length-1);
+        let pattern_to_get_codArt = /art_(.+)\//;
+        let match = link.match(pattern_to_get_codArt);
+        let result = match[1];
         // Images > obtein images, delete images that doesnt contain de product code then delete the duplicates
         let imgSrc = await page.$$eval("img", allimg => allimg.map((val)=> val.getAttribute("src")));
-        let regex = new RegExp(cod_img_1 + "|" + cod_img_2 + "|" + cod_img_3 + "|" + cod_img_4);
+        let regex = new RegExp(result);
         let all_imgs_filtered = imgSrc.filter(item => regex.test(item));
         // Delete duplicates images
         for (let i = 0; i < all_imgs_filtered.length; i++) {
