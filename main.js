@@ -25,11 +25,9 @@ const createWindows = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
-        }
+        },
+        icon: __dirname+ "./src/ui/assets/img/mini-icon_colours.png"
     });
-
-    //icon app
-    //window.setIcon(path.join(__dirname, 'ui/assets/icons/t-rexweb.jpeg'));
 
     //init at:
     window.loadFile("./src/ui/index.html");

@@ -8,7 +8,7 @@ let to_convert = [[]];
 async function la_scrap() {
     console.clear();
 
-    let container = document.getElementById("test");
+    let container = document.getElementById("incoming-data_container");
     // Clear div container (table) if there is any element on
     if (container.hasChildNodes()) {
         container.querySelectorAll('*').forEach(element_inside_container => element_inside_container.remove());
@@ -120,7 +120,7 @@ async function la_scrap() {
             };
             table.appendChild(row);
         };
-        document.getElementById("test").appendChild(table);
+        document.getElementById("incoming-data_container").appendChild(table);
         console.log(to_convert[0]);
     });
 };

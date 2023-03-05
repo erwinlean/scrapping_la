@@ -4,33 +4,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/index.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"></script>
-    <title>test</title>
+    <link rel="icon" href="/src/ui/assets/img/criteria-simple_logo.svg">
+    <link rel="stylesheet" href="./style/normalize.css">
+    <link rel="stylesheet" href="./style/header.css">
+    <link rel="stylesheet" href="./style/body.css">
+    <link rel="stylesheet" href="./style/footer.css">
+    <title>Criteria</title>
 </head>
 <body>
-    <div>
-        <h1>Test LA scrapping</h1>
-    </div>
-
-    <div>
-        <p><strong>URL: https://www.laanonimaonline.com </strong></p>
-        <p>ejemplo de codigo: 2806435, 2144037,2885384</p>
-        <div>
-            <form action="" id="form_id">
-                <input name="input_form" id=input type="text" placeholder="Insertar codigo">
-                <input type="submit" id="form_submit">
-            </form>
+    <div id="header-container">
+        <div class="header-logo">
+            <a href="https://criteria.online/" target="_blank"><img src="./assets/img/criteria_letters-logo.png" alt="Criteria logo"></a>
+        </div>
+        <div class="title">
+            <h2>Scrapping app, Criteria, para productos de La Anonima</h2>
         </div>
     </div>
 
-    <div>
-        <button id="btn-download">Download xlsx</button>
+
+
+    <div class="body-container">
+        <div class="description-obtained">
+            <p><strong>Ingresando codigos, separados por espacios o comas, buscara:</strong></p>
+            <ul>
+                <li>Url del producto en LAOL (link)</li>
+                <li>Titulo del producto</li>
+                <li>Descripcíon</li>
+                <li>Codigo de producto</li>
+                <li>Imagen principal del producto</li>
+                <li>Imagenes extras de producto (Un maxímo de 5 imagenes)</li>
+            </ul>
+        </div>
+
+        <div class="example-to_scrapp">
+            <p>URL de busqueda: <strong><a href="https://www.laanonimaonline.com">www.laanonimaonline.com</a></strong></p>
+            <p>Ejemplo de ingreso de codigos de producto para busqueda: 2806435, 2144037,2885384</p>
+            <p>Esto buscara en <strong><a href="https://www.laanonimaonline.com">www.laanonimaonline.com</a></strong> los codigos de producto 2806435, 2144037,2885384.</p>
+        </div>
+
+        <div class="form-zone">
+            <div>
+                <form action="" id="form_id">
+                    <input name="input_form" id=input type="text" class="input_perse" placeholder="Insertar codigo">
+                    <input type="submit" id="form_submit" class="submit_btn">
+                </form>
+            </div>
+        </div>
+        <div class="download-zone">
+            <button id="btn-download" class="btn_to_download">Download XLSX file</button>
+        </div>
+
+        <div id="incoming-data_container" class="inc-data">
+            <p><strong>Data obtenida:</strong></p>
+        </div>
     </div>
 
-    <div id="test">
 
+
+    <div class="footer">
+        <div class="footer-criteria_icon">
+            <img src="./assets/img/criteria_simple-logo.png" alt="Criteria logo" title="Criteria logo">
+        </div>
+        <div class="contact">
+            <p><strong>Contacto</strong></p>
+            <a href="tel:+5491167143658">+5491167143658</a>
+            <a href="mailto:mcutini@criteria.online">mcutini@criteria.online</a>
+        </div>
+        <div class="media-links">
+            <ul class="social-media_links">
+                <li><a href="https://www.instagram.com/marcelocutini/" target="_blank"><img src="./assets/icons/instagram.png" alt="Criteria Instagram" title="Instagram icon"></a></li>
+                <li><a href="https://www.linkedin.com/company/criteria-smart-catalogs/" target="_blank"><img src="./assets/icons/linkedin.png" alt="Criteria LindekIn" title="LindekIn icon"></a></li>
+                <li><a href="https://www.youtube.com/channel/UCl6EB9QWjh0uwSeC_tBLq2w" target="_blank"><img src="./assets/icons/youtube.png" alt="Criteria Youtube" title="Youtube icon"></a></li>
+            </ul>
+        </div>
     </div>
+
+
 
     <script src="./functions/preventEventDefault.js"></script>
     <script src="./functions/ScrappFunction.js" defer></script>
