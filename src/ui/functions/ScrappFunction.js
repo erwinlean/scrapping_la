@@ -23,6 +23,7 @@ async function la_scrap() {
         // Open browser on resource and search cod_art
         let browser = await puppeteer.launch({args: ['--Cross-Origin-Resource-Policy'], headless: true});
         const page = await browser.newPage();
+        await page.setDefaultNavigationTimeout(60000);
         try{
             await page.click("#ModalCodigoPostal > div.modal-wrapper.posicion_fija.ingresar-codigo-postal > span");
         }catch(e){
@@ -46,7 +47,7 @@ async function la_scrap() {
         }catch(e){
             void e
         }
-        await page.waitForSelector("#cont_producto > div.clearfix.valign.spa_bot > h1");
+        await page.waitForSelector('#cont_producto > div.clearfix.valign.spa_bot > h1', { timeout: 60000 });
 
         // Get all the information needed:
 
