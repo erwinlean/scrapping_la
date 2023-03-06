@@ -6,7 +6,8 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "electron": "^23.1.0"
+    "electron": "^23.1.0",
+    "electron-packager": "^17.1.1"
   },
   "name": "electron-app",
   "version": "1.0.0",
