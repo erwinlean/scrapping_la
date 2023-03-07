@@ -8,6 +8,9 @@ let to_convert = [[]];
 async function la_scrap() {
     console.clear();
 
+    let pepe = document.getElementById("loaders");
+    pepe.style.display = "flex";
+
     let container = document.getElementById("incoming-data_container");
     // Clear div container (table) if there is any element on
     if (container.hasChildNodes()) {
@@ -109,6 +112,8 @@ async function la_scrap() {
 
         //push all the information scrappet so it can be showed on the dom and add latter on the xlsx file
         to_convert[0].push([link, title, descriptcion, article_code, first_img, rest_of_the_imgs]);
+
+        pepe.style.display = "none";
         
         // Show on the DOM the XLSX data
         let table = document.createElement("table");
