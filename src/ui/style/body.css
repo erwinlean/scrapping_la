@@ -1,12 +1,3 @@
-/*
-Colores:
-azulsito: #5AA8A6
-naranja: #ED694C
-gris muy claro: #E5F0F4
-blanco 
-azul fuerte: #0366D6
-*/
-
 .description-obtained{
     text-align: justify;
     padding: 30px;
@@ -26,8 +17,9 @@ azul fuerte: #0366D6
     font-size: 1.2em;
     color: #0366D6;
 }
-
-
+.data-title{
+    padding: 0 30px 30px;
+}
 .example-to_scrapp{
     text-align: justify;
     padding: 15px 30px 15px 30px;
@@ -52,7 +44,6 @@ azul fuerte: #0366D6
 .input_perse, .submit_btn , .btn_to_download{
     padding: 7px;
 }
-
 .inc-data{    
     width: 100%;
     height: auto;
@@ -70,22 +61,32 @@ table{
     margin-left: auto;
     margin-right: auto;
 }
-th,td {
+th,td{
     width: 70vw;
-    border: 1px solid black;
     padding: 15px;
+    border: 1px solid #000;
+    display: block;
     overflow-wrap: break-word;
+    text-shadow: 0 0 black;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.28);
 }
-
-/*test loader ui*/
+.inc-data table tr td:first-child {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.inc-data table tr td:last-child {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
 .loadingIcon{
     align-items: center;
     display: none;
-    padding: 140px 30px 30px 30px;
+    padding: 30px 0 30px 0;
     justify-content: center;
+
 }
 .textLoading{
-    color:#bdf5f5;
+    color:white;
     position: absolute;
     text-align: center;
     text-transform: uppercase;
@@ -96,39 +97,19 @@ th,td {
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    background-color: #1e2432;
+    background-color: #5AA8A6;
     animation: spin 1s linear infinite;
 }
 @keyframes spin {
     0% { 
         transform: rotate(0deg); 
-        box-shadow: 1px 3px 5px #109697;
+        box-shadow: 1px 3px 5px #5AA8A6;
     }
     100% { 
         transform: rotate(360deg); 
-        box-shadow: 1px 3px 5px #109697;
+        box-shadow: 1px 3px 5px #5AA8A6;
     }  
 }
 .textLoading{
     text-align: center;
-}
-.divImgSet{
-    width: 280px;
-    height: 280px;
-    display: inline-flex;
-    max-width: 400px;
-    margin: 5px;
-    padding: 0%;
-    border: 2px solid #1d2a3d;
-    vertical-align: middle;
-}
-.imgScrappedSet{
-    width: 100%;
-    height: 100%;
-    border-radius: 5%;
-    object-fit: none;
-    vertical-align: middle;
-}
-.searchedSection{
-    padding: 5%;
 }

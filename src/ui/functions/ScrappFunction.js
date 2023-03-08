@@ -16,6 +16,10 @@ async function la_scrap() {
     if (container.hasChildNodes()) {
         container.querySelectorAll('*').forEach(element_inside_container => element_inside_container.remove());
     }
+    //Clear the array container (to_convert) for delete last searched items (if there is any)
+    if(to_convert[0].length > 0){
+        to_convert[0] = [];
+    }
 
     // Convert type of the imput
     let article_cod_input = document.getElementById("input");

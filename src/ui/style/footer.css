@@ -1,12 +1,3 @@
-/*
-Colores:
-azulsito: #5AA8A6
-naranja: #ED694C
-gris muy claro: #E5F0F4
-blanco 
-azul fuerte: #0366D6
-*/
-
 .footer{
     background: #5AA8A6;
     width: 100%;
@@ -40,6 +31,9 @@ azul fuerte: #0366D6
     padding: 0 10px 0 10px;
     width: 100%;
     height: 100%;
+}
+.footer > .media-links > ul > li > a > img:hover {
+    filter: brightness(0.25);
 }
 .footer > .media-links > ul > li > a > img{
     width: 35px;
