@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 const search = document.getElementById("form_submit");
 const url = "https://www.laanonimaonline.com/";
 let to_convert = [[]];
+// codigos de ejemplo busqueda 2974400 2974459 2974484 2974514 2806435, 2144037,2885384
 
 async function la_scrap() {
     console.clear();
@@ -30,26 +31,38 @@ async function la_scrap() {
         // Open browser on resource and search cod_art
         let browser = await puppeteer.launch({args: ['--Cross-Origin-Resource-Policy'], headless: true});
         const page = await browser.newPage();
-        page.setDefaultNavigationTimeout(60000);
-        await page.waitForNavigation({'waitUntil':'domcontentloaded'});
+        await page.goto(url, {waitUntil: 'load', timeout: 0});
+
+        // Listen for errors
+        let errorHandler = document.getElementById("error-handler");
+        page.on('error', (err) => {
+            console.error('Page error:', err);
+            let errorMessage = document.createElement('p');
+            errorMessage.textContent = `Error: ${err}. Please try again.`;
+            errorHandler.appendChild(errorMessage);
+        });
+        page.on('pageerror', (err) => {
+            console.error('Page error:', err);
+            let errorMessage = document.createElement('p');
+            errorMessage.textContent = `Error: ${err}. Please try again.`;
+            errorHandler.appendChild(errorMessage);
+        });        
+
         try{
             await page.click("#ModalCodigoPostal > div.modal-wrapper.posicion_fija.ingresar-codigo-postal > span");
         }catch(e){
             void e
         }
-        await page.goto(url, {waitUntil: "domcontentloaded"});
         await page.waitForSelector("#buscar");
         await page.type("#buscar", article_code_to_search, {delay: 25});
         await page.keyboard.press("Enter");
 
         // Enter on the URL of the specific prodct
-        await page.waitForNavigation({'waitUntil':'domcontentloaded'});
         try{
             await page.click("#ModalCodigoPostal > div.modal-wrapper.posicion_fija.ingresar-codigo-postal > span");
         }catch(e){
             void e
         }
-        await page.waitForNavigation({'waitUntil':'domcontentloaded'});
         await page.waitForSelector("#maq_cuerpo > div.maq_col_2 > div.caja1.producto > div > div");
         await page.click("#maq_cuerpo > div.maq_col_2 > div.caja1.producto > div > div");
         try{
@@ -57,8 +70,7 @@ async function la_scrap() {
         }catch(e){
             void e
         }
-        await page.waitForNavigation({'waitUntil':'domcontentloaded'});
-        await page.waitForSelector('#cont_producto > div.clearfix.valign.spa_bot > h1', { timeout: 60000 });
+        await page.waitForSelector('#cont_producto > div.clearfix.valign.spa_bot > h1');
 
         // Get all the information needed:
 
@@ -114,7 +126,7 @@ async function la_scrap() {
             img_to_string = img_to_string.substring(0, index + 6);
         }
         // Now, separate the first image, and the rest of the images, for separated in columns in the xlsx file
-        let firstCommaIndex = img_to_string.indexOf(",");
+        let firstCommaIndex = img_to_string.indexOf(", ");
         let first_img = img_to_string.substring(0, firstCommaIndex);
         let rest_of_the_imgs = img_to_string.substring(firstCommaIndex + 1);
 
