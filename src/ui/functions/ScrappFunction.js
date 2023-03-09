@@ -30,23 +30,26 @@ async function la_scrap() {
         // Open browser on resource and search cod_art
         let browser = await puppeteer.launch({args: ['--Cross-Origin-Resource-Policy'], headless: true});
         const page = await browser.newPage();
-        await page.setDefaultNavigationTimeout(60000);
+        page.setDefaultNavigationTimeout(60000);
+        await page.waitForNavigation({'waitUntil':'domcontentloaded'});
         try{
             await page.click("#ModalCodigoPostal > div.modal-wrapper.posicion_fija.ingresar-codigo-postal > span");
         }catch(e){
             void e
         }
-        await page.goto(url/*, {waitUntil: "networkidle0"}*/);
+        await page.goto(url, {waitUntil: "domcontentloaded"});
         await page.waitForSelector("#buscar");
-        await page.type("#buscar", article_code_to_search/*, {delay: 25}*/);
+        await page.type("#buscar", article_code_to_search, {delay: 25});
         await page.keyboard.press("Enter");
 
         // Enter on the URL of the specific prodct
+        await page.waitForNavigation({'waitUntil':'domcontentloaded'});
         try{
             await page.click("#ModalCodigoPostal > div.modal-wrapper.posicion_fija.ingresar-codigo-postal > span");
         }catch(e){
             void e
         }
+        await page.waitForNavigation({'waitUntil':'domcontentloaded'});
         await page.waitForSelector("#maq_cuerpo > div.maq_col_2 > div.caja1.producto > div > div");
         await page.click("#maq_cuerpo > div.maq_col_2 > div.caja1.producto > div > div");
         try{
@@ -54,6 +57,7 @@ async function la_scrap() {
         }catch(e){
             void e
         }
+        await page.waitForNavigation({'waitUntil':'domcontentloaded'});
         await page.waitForSelector('#cont_producto > div.clearfix.valign.spa_bot > h1', { timeout: 60000 });
 
         // Get all the information needed:
