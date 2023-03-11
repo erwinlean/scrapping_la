@@ -1,0 +1,3 @@
+1- Si no se encuentra pagina para ir que contenga art_ , que identifique esto, y lo señale en el DOM (este codigo de articulo no se encuentra en la web actualmente)
+2- Separar imagenes (Por alguna razon no se estan separando en 2 sectores diferentes: Imagen principal, y las proximas _5 imagenes)
+3- Deploy -mwl (mac, windows, linux) , con posibilidad de update
