@@ -25,6 +25,29 @@ const xlsx_function_download = async () =>{
     let buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
     // Create a Blob object from the buffer
     let blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+    // Preparing XLSX file to send into the MySQL db > by api
+    // Data to send:
+    const data_to_send = new FormData();
+    data_to_send.append('file', blob);
+
+    // Post to api
+    const url = "not-endpoint_yet";
+    const options = {
+        method: "POST",
+        body: data_to_send
+    };
+    fetch(url, options)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        console.log("Data sent successfully!");
+    })
+    .catch(error => {
+        console.error("There was a problem sending the data:", error);
+    });
+
     // Create a link element and set its attributes
     let link_to_xlsx_file = document.createElement("a");
     link_to_xlsx_file.href = URL.createObjectURL(blob);
