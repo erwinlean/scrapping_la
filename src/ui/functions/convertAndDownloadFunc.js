@@ -31,7 +31,8 @@ const xlsx_function_download = async () =>{
     const data_to_send = new FormData();
     data_to_send.append('file', blob);
 
-    // Post to api
+    // Post to api for the future, not going to add api to this api yet.
+    /*
     const url = "not-endpoint_yet";
     const options = {
         method: "POST",
@@ -47,6 +48,7 @@ const xlsx_function_download = async () =>{
     .catch(error => {
         console.error("There was a problem sending the data:", error);
     });
+    */
 
     // Create a link element and set its attributes
     let link_to_xlsx_file = document.createElement("a");
