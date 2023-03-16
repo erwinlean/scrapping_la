@@ -69,6 +69,11 @@ ipcMain.on(`display-app-menu`, function(e, args) {
     }
 });
 
+//Check version
+ipcMain.on('app_version', (event) => {
+    event.sender.send('app_version', { version: app.getVersion() });
+});
+
 //windows open when ready and close windows
 app.whenReady().then(() => {
     createWindows();
