@@ -1,8 +1,47 @@
 {
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "simple scrapping",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erwin Leandro Marte erwin.mdq@gmail.com",
+  "license": "ISC",
+  "build":{
+    "appId": "La anonima scrappingv1",
+    "asar": "true",
+    "dmg":{
+      "contents":[
+        {
+          "x":110,
+          "y":150
+        },
+        {
+          "x":240,
+          "y":150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux":{
+      "target":[
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win":{
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
+  },
   "dependencies": {
     "axios": "^1.3.4",
     "cheerio": "^1.0.0-rc.12",
-    "electron-builder": "^23.6.0",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-updater": "^5.3.0",
     "normalize.css": "^8.0.1",
@@ -11,16 +50,7 @@
   },
   "devDependencies": {
     "electron": "^23.1.0",
+    "electron-builder": "^23.6.0",
     "electron-packager": "^17.1.1"
-  },
-  "name": "electron-app",
-  "version": "1.0.0",
-  "description": "simple scrapping",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Erwin Leandro Marte",
-  "license": "ISC"
+  }
 }

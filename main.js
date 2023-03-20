@@ -29,11 +29,11 @@ const createWindows = () => {
         icon: __dirname+ "./src/ui/assets/img/mini-icon_colours.png"
     });
 
-    //init at:
+    // Init at:
     window.loadFile("./src/ui/index.html");
 
-    //devtools on
-    window.webContents.openDevTools();
+    // Devtools on
+    //window.webContents.openDevTools();
 
     var menu = Menu.buildFromTemplate([{
         label: "Menu",
