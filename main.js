@@ -33,7 +33,7 @@ const createWindows = () => {
     window.loadFile("./src/ui/index.html");
 
     // Devtools on
-    //window.webContents.openDevTools();
+    window.webContents.openDevTools();
 
     var menu = Menu.buildFromTemplate([{
         label: "Menu",
